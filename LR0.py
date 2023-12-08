@@ -181,13 +181,12 @@ for i in parsing_table:
 	else:
 		df.at[i[0], i[1]] = i[2]
 
-SRI = False
+SRC = False
 for i in return_table:
     if df.at[i[0], i[1]] == '':
         df.at[i[0], i[1]] = i[2]
     else:
-        # print('This grammar have \"Shift Reduce Implict!\"')
-        SRI = True
+        SRC = True
         df.at[i[0], i[1]] += ('/' + i[2])
 
 # print(df)
@@ -210,12 +209,16 @@ pickle_store(grammar, 'tables/grammar')
 pickle_store(filename, 'tables/filename')
 pickle_store(terminal, 'tables/terminal')
 
-if SRI:
-    print('This grammar have \"Shift Reduce Implict\"!')
+if SRC:
+    print('This grammar have \"Shift Reduce Conflict\"!')
     inp = input('Continue to do parsing? [Y/N]')
     if inp == 'Y' or inp == 'y':
+        use_SRC = input('Use DFS to completion when encountering an SRC issue? [Y/N]')
         print('\n\n/////////////////// Start Parsing ///////////////////')
-        os.system("python LR0_parse_with_SRI.py")
+        if use_SRC == 'Y' or use_SRC == 'y':
+            os.system("python LR0_parse_with_SRC.py")
+        else:
+            os.system("python LR0_parse.py")
 else:
     print('\n\n/////////////////// Start Parsing ///////////////////')
-    os.system("python LR0_parse_with_SRI.py")
+    os.system("python LR0_parse.py")
