@@ -36,3 +36,8 @@ bb                    <- 直接輸入測試資料
 ab
 abab
 ```
+
+Example:
+![image](https://github.com/fan0723/Compiler-LR1-parser/assets/75062267/bc59f697-b698-4739-a7ae-fd10fc7c0f01)
+
+![image](https://github.com/fan0723/Compiler-LR1-parser/assets/75062267/c16bdb8e-276b-48ea-bd7d-261779423d69)
